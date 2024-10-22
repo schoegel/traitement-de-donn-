@@ -1,0 +1,58 @@
+import numpy as np
+import matplotlib.pyplot as plt
+
+
+#### constantes
+
+A = 10
+
+w = 5
+
+n = 1000
+
+tab_Tb = np.array([1,0.5,0.1,0.01,0.001]) #Hz
+
+
+tab_temps = np.arange(0, n*tab_Tb, len(tab_Tb))
+
+tab_n = np.arange(n)
+
+#### fonction 
+
+
+def tab_fn(c,Te):
+    if c == 1 :
+        f_n = A*np.cos(w*tab_Tb[Te]*tab_n)
+    else :
+        Tb = tab_Tb[Te]
+        tab_temps = np.arange(0,Tb*n,Tb)  ###le tableau vas de 0 jusqu'a n diviser par la frequence avec un pas de Te
+        f_n = A*np.cos(w*tab_Tb[Te]*tab_temps)
+    return f_n
+
+#### plot
+
+plt.figure()
+plt.title("etude")
+plt.plot(tab_n,tab_fn(1,0))
+plt.plot(tab_n,tab_fn(1,1))
+plt.plot(tab_n,tab_fn(1,2))
+plt.plot(tab_n,tab_fn(1,3))
+plt.plot(tab_n,tab_fn(1,4))
+
+plt.figure()
+plt.title("etude_avec_zoom")
+plt.xlim(0,6)
+plt.plot(tab_n,tab_fn(1,0))
+plt.plot(tab_n,tab_fn(1,1))
+plt.plot(tab_n,tab_fn(1,2))
+plt.plot(tab_n,tab_fn(1,3))
+plt.plot(tab_n,tab_fn(1,4))
+
+plt.figure()
+plt.title("etude_avec_temps")
+plt.plot(tab_n,tab_fn(2,0))
+plt.plot(tab_n,tab_fn(2,1))
+plt.plot(tab_n,tab_fn(2,2))
+plt.plot(tab_n,tab_fn(2,3))
+plt.plot(tab_n,tab_fn(2,4))
+
